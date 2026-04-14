@@ -1,0 +1,13 @@
+[Unit]
+Description=Spin Books Service
+After=network.target
+
+[Service]
+User=szymon
+Group=szymon
+WorkingDirectory=/home/szymon/projects/spin-books
+ExecStart=/usr/local/bin/spin up --listen 0.0.0.0:3003 --sqlite @migration.sql
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,22 @@
+#:schema https://schemas.spinframework.dev/spin/manifest-v2/latest.json
+
+spin_manifest_version = 2
+
+[application]
+name = "books-spin"
+version = "0.1.0"
+authors = ["szymon"]
+description = ""
+
+[[trigger.http]]
+route = "/book/..."
+component = "books-spin"
+
+[component.books-spin]
+source = "target/wasm32-wasip1/release/books_spin.wasm"
+allowed_outbound_hosts = []
+sqlite_databases = ["default"]
+
+[component.books-spin.build]
+command = "cargo build --target wasm32-wasip1 --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
